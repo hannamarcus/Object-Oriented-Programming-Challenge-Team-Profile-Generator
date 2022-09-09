@@ -1,15 +1,12 @@
 //Requirements
-
 const inquirer = require("inquirer");
-const util = require('util')
-const fs = require("fs");
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const createHTML = require("./src/template");
-const { choices } = require("yargs");
-
+const generateHTML = require("./src/template");
+const util = require("util");
+const fs = require("fs");
 const teamArr = [];
 const createFileSync = util.promisify(fs.appendFile);
 const appendFileSync = util.promisify(fs.createFile);
@@ -18,57 +15,58 @@ function newTeam() {
   inquirer.prompt([ {
       type: 'list',
       message: 'Please select the correct title.',
-      name: 'homePage',
-      choices: ["Manager", "Engineer", "Intern", "Employee"]
+      choices: ['Employee', 'Engineer', 'Intern', 'Employee'],
     },
 
   ]).then(function (choice) {
     switch (choices.homePage) {
+      case "Employee":
+        addEmployee();
+        break;
+
+      case "Engineer":
+          addEngineer();
+          break;
+
+      case "Intern":
+            addIntern();
+            break;
+    
       case "Manager":
         addManager();
         break;
-      case "Engineer":
-        addEngineer();
-        break;
 
-      case "Intern":
-        addIntern();
-        break;
-
-      case "Employee":
-        buildHTML();
     }}
   )}
-
 
 function addManager() {
   inquirer.prompt([
     {
       type: "input",
       name: "name",
-      message: "Input manager's name:"
+      message: "Please input manager's name.:"
     },
 
     {
       type: "input",
       name: "id",
-      message: "Input manager's ID number:"
+      message: "Please input manager's ID number:"
     },
 
     {
       type: "input",
       name: "email",
-      message: "Input manager's email:"
+      message: "Please input manager's email address:"
     },
 
     {
       type: "input",
       name: "office",
-      message: "Enter manager's office number:"
+      message: "Please input manager's office location:"
     }
 
-  ]).then(input => {
-    const manager = new Manager(input.name, input.id, input.email, input.office);
+  ]).then(answers => {
+    const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
     Team.push(manager);
     newTeam();
   }
@@ -79,19 +77,19 @@ function addEngineer() {
     {
       type: "input",
       name: "name",
-      message: "Input engineer's name:"
+      message: "Please input engineer's name:"
     },
 
     {
       type: "input",
       name: "id",
-      message: "Input engineer's ID number:"
+      message: "Please input engineer's ID number:"
     },
 
     {
       type: "input",
       name: "email",
-      message: "Input engineer's email:"
+      message: "Please input engineer's email address:"
     },
 
     {
@@ -100,8 +98,8 @@ function addEngineer() {
       message: "Enter engineer's Github username:"
     }
 
-  ]).then(input => {
-    const engineer = new Engineer(input.name, input.id, input.email, input.github);
+  ]).then(answers => {
+    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
     Team.push(engineer);
     newTeam();
   }
@@ -113,29 +111,29 @@ function addIntern() {
     {
       type: "input",
       name: "name",
-      message: "Input intern's name:"
+      message: "Please input intern's name:"
     },
 
     {
       type: "input",
       name: "id",
-      message: "Input intern's ID number:"
+      message: "Please input intern's ID number:"
     },
 
     {
       type: "input",
       name: "email",
-      message: "Input intern's email:"
+      message: "Please input intern's email address:"
     },
 
     {
       type: "input",
       name: "school",
-      message: "Enter intern's school name:"
+      message: "Please input intern's school name:"
     }
 
-  ]).then(input => {
-    const intern = new Intern(input.name, input.id, input.email, input.school);
+  ]).then(answers => {
+    const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
     Team.push(intern);
     newTeam();
   }
@@ -147,30 +145,24 @@ function addEmployee() {
       {
         type: "input",
         name: "name",
-        message: "Input employee's name:"
+        message: "Please input employee's name:"
       },
   
       {
         type: "input",
         name: "id",
-        message: "Input employee's ID number:"
+        message: "Please input employee's ID number:"
       },
   
       {
         type: "input",
         name: "email",
-        message: "Input employee's email:"
-      },
-  
-      {
-        type: "input",
-        name: "school",
-        message: "Enter employee's school name:"
+        message: "Please input employee's email address:"
       }
   
-    ]).then(input => {
-      const intern = new Employee (input.name, input.id, input.email, input.school);
-      Team.push(intern);
+    ]).then(answers => {
+      const employee = new Employee (answers.name, answers.id, answers.email);
+      Team.push(employee);
       newTeam();
     }
   
@@ -178,6 +170,6 @@ function addEmployee() {
 
     newTeam();
 
-function createHTML() {
-  fs.createFileSync(distPath, createHTML(Team), 'utf-8')
+function generateTML() {
+  fs.createFileSync(distPath, generateHTML(Team), 'utf-8')
 }

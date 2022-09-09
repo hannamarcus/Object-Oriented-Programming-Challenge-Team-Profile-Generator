@@ -1,22 +1,38 @@
+// Using jest, create engineer test
+// Create new Engineer using required parameters
+
 const Engineer = require('../lib/Engineer');
+const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'githubUsername');
 
-test('Can pull GitHub account via constructor'), () => {
-    const testValue = "hasGitHubAccount";
-    const e = new Engineer("John", 0001, "john.doe@gmail.com", testValue);
+// Test each parameter
+test('constructor values for engineer', () => {
+    expect(engineer.name).toBe('Sam');
+    expect(engineer.id).toBe(2);
+    expect(engineer.email).toBe('samtheman@gmail.com');
+    expect(engineer.github).toBe('githubUsername');
+});
 
-    expect(e.github).toBe(testValue);
-}
+test('returnName method works?', () => {
+  const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'Engineer', 'githubUsername');
+  expect(engineer.returnName()).toBe('Sam');
+});
 
-    test("expect getRole() to be \"Engineer\"", () => {
-        const testValue = "Engineer";
-        const e = new Engineer("John", 0001, "john.doe@gmail.com", "GitHubUser");
+test('returnID method works?', () => {
+    const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'Engineer', 'githubUsername');
+    expect(engineer.returnId()).toBe(2);
+});
 
-        expect(e.getRole()).toBe(testValue);
-      });
-      
-      test("Username from getGitHub()", () => {
-        const testValue = "hasGitHubAccount";
-        const e = new Engineer("John", 001, "john.doe@gmail.com", testValue);
+test('returnEmail method works?', () => {
+    const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'Engineer', 'githubUsername');
+    expect(engineer.returnEmail()).toBe('samtheman@gmail.com');
+});
 
-        expect(e.getGithub()).toBe(testValue);
-      });
+test('returnRole method works?', () => {
+    const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'Engineer', 'githubUsername');
+    expect(engineer.returnRole()).toBe('Engineer');
+});
+
+test('returnGithub method works?', () => {
+  const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'Engineer', 'githubUsername');
+  expect(engineer.returnGithub()).toBe('githubUsername');
+});

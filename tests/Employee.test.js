@@ -1,33 +1,32 @@
+// Using jest, create employee test
+// Create new employee using required parameters
+
 const Employee = require('../lib/Employee');
+const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com', 'Employee');
 
-test('Employee info created?', () => {
-    const e = new Employee('John', 0001, 'john.doe@gmail.com');
-
-    expect(e.name).toBe('John');
-    expect(e.id).toBe(0001);
-    expect(e.email).toBe('john.doe@gmail.com');
+// Test each parameter
+test('constructor values for Employee', () => {
+    expect(employee.name).toBe('Hanna');
+    expect(employee.id).toBe(1);
+    expect(employee.email).toBe('hannamarcus1@gmail.com');
 });
 
-test('getId works?', () => {
-    const employee = new Employee('John', 0001, 'john.doe@gmail.com');
-
-    expect(e.getId()).toBe(0001);
+test('returnName method works?', () => {
+    const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com', 'Employee');
+    expect(employee.returnName()).toBe('Hanna');
 });
 
-test('getName works?', () => {
-    const e = new Employee('John', 2683, 'john.doe@gmail.com');
-
-    expect(e.getName()).toBe('John');
+test('returnID method works?', () => {
+    const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com', 'Employee');
+    expect(employee.returnId()).toBe('1');
 });
 
-test('getEmail works?', () => {
-    const e = new Employee('John', 0001, 'john.doe@gmail.com');
-
-    expect(e.getEmail()).toBe('john.doe@gmail.com');
+test('returnEmail method works?', () => {
+    const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com', 'Employee');
+    expect(employee.returnEmail()).toBe('hannamarcus1@gmail.com');
 });
 
-test('getRole works?', () => {
-    const e = new Employee('John', 001, 'john.doe@gmail.com');
-
-    expect(e.getRole()).toBe('Employee');
+test('returnRole method works?', () => {
+    const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com', 'Employee');
+    expect(employee.returnRole()).toBe('Employee');
 });

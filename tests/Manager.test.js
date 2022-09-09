@@ -1,22 +1,38 @@
-const Manager = require("../lib/Manager");
+// Using jest, create manager test
+// Create new manager using required parameters
 
-test("Can pull office number via constructor", () => {
-  const testValue = 222;
-  const e = new Manager("John", 0001, "john.doe@gmail.com", testValue);
+const Manager = require('../lib/Manager');
+const manager = new Manager('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado')
 
-  expect(e.officeNumber).toBe(testValue);
+// Test each parameter
+test('constructor values for manager', () => {
+    expect(manager.name).toBe('Sophia');
+    expect(manager.id).toBe(4);
+    expect(manager.email).toBe('sopher@gmail.com');
+    expect(namanger.office).toBe('Colorado');
 });
 
-test("does getRole() work?", () => {
-  const testValue = "Manager";
-  const e = new Manager("John", 0001, "john.doe@gmail.com", 222);
-
-  expect(e.getRole()).toBe(testValue);
+test('returnName method works?', () => {
+  const manager = new Manager('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado');
+  expect(manager.returnName()).toBe('Sophia');
 });
 
-test("Can get office number via getOffice()", () => {
-  const testValue = 222;
-  const e = new Manager("Foo", 1, "test@test.com", testValue);
+test('returnID method works?', () => {
+    const manager = new Employee('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado');
+    expect(manager.returnId()).toBe(4);
+});
 
-  expect(e.getOfficeNumber()).toBe(testValue);
+test('returnEmail method works?', () => {
+    const manager = new Manager('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado');
+    expect(manager.returnEmail()).toBe('sopher@gmail.com');
+});
+
+test('returnRole method works?', () => {
+    const manager = new Manager('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado');
+    expect(manager.returnRole()).toBe('Manager');
+});
+
+test('returnOffice method works?', () => {
+  const manager = new Manager('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado');
+  expect(manager.returnOffice()).toBe('Colorado');
 });
