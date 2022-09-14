@@ -14,6 +14,7 @@ const appendFileSync = util.promisify(fs.createFile);
 function newTeam() {
   inquirer.prompt([ {
       type: 'list',
+      name: 'choice',
       message: 'Please select the correct title.',
       choices: ['Employee', 'Engineer', 'Intern', 'Employee'],
     },
