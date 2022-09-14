@@ -67,8 +67,8 @@ function addManager() {
     }
 
   ]).then(answers => {
-    const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
-    Team.push(manager);
+    const newManager = new Manager(answers.name, answers.id, answers.email, answers.office);
+    Team.push(newManager);
     newTeam();
   }
   )};
@@ -100,8 +100,8 @@ function addEngineer() {
     }
 
   ]).then(answers => {
-    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-    Team.push(engineer);
+    const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+    Team.push(newEngineer);
     newTeam();
   }
 
@@ -134,8 +134,8 @@ function addIntern() {
     }
 
   ]).then(answers => {
-    const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-    Team.push(intern);
+    const newIntern = new Intern(answers.name, answers.id, answers.email, answers.school);
+    Team.push(newIntern);
     newTeam();
   }
 
@@ -162,8 +162,8 @@ function addEmployee() {
       }
   
     ]).then(answers => {
-      const employee = new Employee (answers.name, answers.id, answers.email);
-      Team.push(employee);
+      const newEmployee = new Employee (answers.name, answers.id, answers.email);
+      Team.push(newEmployee);
       newTeam();
     }
   
