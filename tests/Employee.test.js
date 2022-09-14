@@ -7,7 +7,7 @@ const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com', 'Employee'
 // Test each parameter
 test('constructor values for Employee', () => {
     expect(employee.name).toBe('Hanna');
-    expect(employee.id).toBe(1);
+    expect(employee.id).toBe('1');
     expect(employee.email).toBe('hannamarcus1@gmail.com');
 });
 

@@ -7,9 +7,9 @@ const manager = new Manager('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Color
 // Test each parameter
 test('constructor values for manager', () => {
     expect(manager.name).toBe('Sophia');
-    expect(manager.id).toBe(4);
+    expect(manager.id).toBe('4');
     expect(manager.email).toBe('sopher@gmail.com');
-    expect(namanger.office).toBe('Colorado');
+    expect(manager.office).toBe('Colorado');
 });
 
 test('returnName method works?', () => {
@@ -19,7 +19,7 @@ test('returnName method works?', () => {
 
 test('returnID method works?', () => {
     const manager = new Employee('Sophia', '4', 'sopher@gmail.com', 'Manager', 'Colorado');
-    expect(manager.returnId()).toBe(4);
+    expect(manager.returnId()).toBe('4');
 });
 
 test('returnEmail method works?', () => {

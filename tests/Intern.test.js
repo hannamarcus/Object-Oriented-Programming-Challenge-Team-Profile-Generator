@@ -6,7 +6,7 @@ const intern = new Intern('Zach', '3', 'zachattack@gmail.com', 'Intern', 'Berkel
 // Test each parameter
 test('constructor values for intern', () => {
     expect(intern.name).toBe('Zach');
-    expect(intern.id).toBe(3);
+    expect(intern.id).toBe('3');
     expect(intern.email).toBe('zachattack@gmail.com');
     expect(intern.office).toBe('Berkeley');
     expect(intern.school).toBe('UC Berkeley');
@@ -20,7 +20,7 @@ test('returnName method works?', () => {
 
 test('returnID method works?', () => {
     const intern = new Intern('Zach', '3', 'zachattack@gmail.com', 'Intern', 'Berkeley', 'UC Berkeley');
-    expect(intern.returnId()).toBe(3);
+    expect(intern.returnId()).toBe('3');
 });
 
 test('returnEmail method works?', () => {
