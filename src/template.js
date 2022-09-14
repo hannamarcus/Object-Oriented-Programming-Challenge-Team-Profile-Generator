@@ -10,7 +10,7 @@ const employeeBox = (employee) => {`
       <h6 class="card-subtitle mb-2 text-white text-center"> ${employee.returnRole()} </h6>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID #:${employee.returnId()}</li>
-        <li class="list-group-item">Email: <a href="mailto:${employee.returnEmail()}"> ${manager.returnEmail()} </a></li>
+        <li class="list-group-item">Email: <a href="mailto:${employee.returnEmail()}"> ${employee.returnEmail()} </a></li>
       </ul>
     </div>
   </div>
@@ -89,7 +89,7 @@ for (let i = 0; i < team.length; i++) {
    return html.join('');
   }
   // Export function to generate HTML page
-  
+
   module.exports = team => {
     return `
     <!DOCTYPE html>
