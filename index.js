@@ -96,7 +96,7 @@ function addEngineer() {
     {
       type: "input",
       name: "github",
-      message: "Enter engineer's Github username:"
+      message: "Enter Engineer's Github username:"
     }
 
   ]).then(answers => {
@@ -169,8 +169,12 @@ function addEmployee() {
   
     )};
 
-    newTeam();
 
-function generateTML() {
-  fs.createFileSync(distPath, generateHTML(Team), 'utf-8')
+const buildTeam = () => {
+if (!fs.existsSync(OUTPUT_DIR)) {
+  fs.mkdirSync(OUTPUT_DIR)
 }
+fs.writeFileSync(outputPath, generateSite(Team), "utf-8");
+}
+
+newTeam();

@@ -13,14 +13,8 @@
   ## Installation:  
   run nmp i, then node index to start
   
-  ## Usage:
-  
-  
   ## License:
   MIT
-
-  ## Contributing:
-  
 
   ## Testing:
   In order to test run All test files in test folder in the GitBash terminal

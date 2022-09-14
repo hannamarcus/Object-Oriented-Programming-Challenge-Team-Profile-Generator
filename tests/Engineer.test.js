@@ -2,7 +2,7 @@
 // Create new Engineer using required parameters
 
 const Engineer = require('../lib/Engineer');
-const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'githubUsername');
+const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'Engineer', 'githubUsername');
 
 // Test each parameter
 test('constructor values for engineer', () => {

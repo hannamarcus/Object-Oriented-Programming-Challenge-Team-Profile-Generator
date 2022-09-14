@@ -1,6 +1,9 @@
+const generateTeam = (team) => {
+  console.log(team);
+  const html = [];
+
 //Employee Box
-const employeeBox = (employee) => {
-    return `
+const employeeBox = (employee) => {`
 <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-center"> ${employee.returnName()} </h5>
@@ -12,11 +15,11 @@ const employeeBox = (employee) => {
     </div>
   </div>
   `
+  html.push(employeeHtml);
 };
 
 //Engineer Box
-const engineerBox = (engineer) => {
-    return `
+const engineerBox = (engineer) => { `
     <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-white text-center"> ${engineer.returnName()} </h5>
@@ -29,11 +32,11 @@ const engineerBox = (engineer) => {
     </div>
   </div>
   `
+  html.push(engineerHtml);
 }
 
 //Intern Box
-const internBox = (intern) => {
-    return `
+const internBox = (intern) => {`
     <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-white text-center">${intern.returnName()} </h5>
@@ -46,11 +49,11 @@ const internBox = (intern) => {
     </div>
   </div>
   `
+  html.push(internHtml);
 }
 
 //Manager Box
-const managerBox = (manager) => {
-    return `
+const managerBox = (manager) => {`
 <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-center"> ${manager.returnName()} </h5>
@@ -63,11 +66,31 @@ const managerBox = (manager) => {
     </div>
   </div>
   `
-};
+  html.push(managerHtml);
+}
 
-//New HTML page
-const newHTML = (Team) => {
-    const teamBoxes = Team.map(member => makeEmployee(member)).join('')
+// Loop for all employees
+for (let i = 0; i < team.length; i++) {
+  if (employee[i].returnRole() === "Employee") {
+    employeeBox(team[i]);
+}
+  if (manager[i].returnRole() === "Manager") {
+      managerBox(team[i]);
+  }
+  if (engineer[i].getRole() === "Engineer") {
+      engineerBox(team[i]);
+  }
+  if (intern[i].getRole() === "Intern") {
+      internBox(team[i]);
+  }
+}
+
+   // Join the HTML blocks
+   return html.join('');
+  }
+  // Export function to generate HTML page
+  
+  module.exports = team => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -86,7 +109,7 @@ const newHTML = (Team) => {
     </div>     
     
     <div class="card-group"> 
-    ${teamBoxes}    
+    ${generateTeam(team)}    
    
     </div>
     
