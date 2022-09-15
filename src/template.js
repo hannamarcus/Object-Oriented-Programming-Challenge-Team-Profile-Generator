@@ -6,11 +6,11 @@ const generateTeam = (team) => {
 const employeeBox = (employee) => {`
 <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
-      <h5 class="card-title text-center"> ${employee.returnName()} </h5>
-      <h6 class="card-subtitle mb-2 text-white text-center"> ${employee.returnRole()} </h6>
+      <h5 class="card-title text-center"> ${employee.getName()} </h5>
+      <h6 class="card-subtitle mb-2 text-white text-center"> ${employee.getRole()} </h6>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID #:${employee.returnId()}</li>
-        <li class="list-group-item">Email: <a href="mailto:${employee.returnEmail()}"> ${employee.returnEmail()} </a></li>
+        <li class="list-group-item">ID #:${employee.getId()}</li>
+        <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}"> ${employee.getEmail()} </a></li>
       </ul>
     </div>
   </div>
@@ -22,12 +22,12 @@ const employeeBox = (employee) => {`
 const engineerBox = (engineer) => { `
     <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
-      <h5 class="card-title text-white text-center"> ${engineer.returnName()} </h5>
-      <h6 class="card-subtitle mb-2 text-white text-center"> ${engineer.returnRole()} </h6>
+      <h5 class="card-title text-white text-center"> ${engineer.getName()} </h5>
+      <h6 class="card-subtitle mb-2 text-white text-center"> ${engineer.getRole()} </h6>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID #:${engineer.returnId()}</li>
-        <li class="list-group-item">Email:<a href="mailto:${engineer.returnEmail()}">${engineer.returnEmail()}</a></li>
-        <li class="list-group-item">GitHub:<a href="https://github.com/${engineer.returnGithub()}">${engineer.returnGithub()}</a></li>
+        <li class="list-group-item">ID #:${engineer.getId()}</li>
+        <li class="list-group-item">Email:<a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+        <li class="list-group-item">GitHub:<a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
       </ul>
     </div>
   </div>
@@ -39,12 +39,12 @@ const engineerBox = (engineer) => { `
 const internBox = (intern) => {`
     <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
-      <h5 class="card-title text-white text-center">${intern.returnName()} </h5>
-      <h6 class="card-subtitle mb-2 text-white text-center">${intern.returnRole()} </h6>
+      <h5 class="card-title text-white text-center">${intern.getName()} </h5>
+      <h6 class="card-subtitle mb-2 text-white text-center">${intern.getRole()} </h6>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID:${intern.returnId()}</li>
-        <li class="list-group-item">Email:<a href="mailto:${intern.returnEmail()}">${intern.returnEmail()}</a></li>
-        <li class="list-group-item">School:${intern.returnSchool()}</li>
+        <li class="list-group-item">ID:${intern.getId()}</li>
+        <li class="list-group-item">Email:<a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+        <li class="list-group-item">School:${intern.getSchool()}</li>
       </ul>
     </div>
   </div>
@@ -56,12 +56,12 @@ const internBox = (intern) => {`
 const managerBox = (manager) => {`
 <div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
-      <h5 class="card-title text-center"> ${manager.returnName()} </h5>
-      <h6 class="card-subtitle mb-2 text-white text-center"> ${manager.returnRole()} </h6>
+      <h5 class="card-title text-center"> ${manager.getName()} </h5>
+      <h6 class="card-subtitle mb-2 text-white text-center"> ${manager.getRole()} </h6>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">ID #:${manager.returnId()}</li>
-        <li class="list-group-item">Email: <a href="mailto:${manager.returnEmail()}"> ${manager.returnEmail()} </a></li>
-        <li class="list-group-item">Office Location: ${manager.returnOffice()} </li>
+        <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}"> ${manager.getEmail()} </a></li>
+        <li class="list-group-item">Office Location: ${manager.getOffice()} </li>
       </ul>
     </div>
   </div>
@@ -71,10 +71,10 @@ const managerBox = (manager) => {`
 
 // Loop for all employees
 for (let i = 0; i < team.length; i++) {
-  if (employee[i].returnRole() === "Employee") {
+  if (employee[i].getRole() === "Employee") {
     employeeBox(team[i]);
 }
-  if (manager[i].returnRole() === "Manager") {
+  if (manager[i].getRole() === "Manager") {
       managerBox(team[i]);
   }
   if (engineer[i].getRole() === "Engineer") {
@@ -119,4 +119,3 @@ for (let i = 0; i < team.length; i++) {
     </html>
     `;
 };
-module.exports = newHTML; 

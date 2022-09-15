@@ -8,19 +8,19 @@ const generateHTML = require("./src/template");
 const util = require("util");
 const fs = require("fs");
 const teamArr = [];
-const createFileSync = util.promisify(fs.appendFile);
-const appendFileSync = util.promisify(fs.createFile);
+//const createFileSync = util.promisify(fs.appendFile);
+//const appendFileSync = util.promisify(fs.createFile);
 
 function newTeam() {
   inquirer.prompt([ {
       type: 'list',
       name: 'choice',
       message: 'Please select the correct title.',
-      choices: ['Employee', 'Engineer', 'Intern', 'Employee'],
+      choices: ['Employee', 'Engineer', 'Intern', 'Manager'],
     },
 
-  ]).then(function (choice) {
-    switch (choices.homePage) {
+  ]).then(function (response) {
+    switch (response.choice) {
       case "Employee":
         addEmployee();
         break;
@@ -68,7 +68,7 @@ function addManager() {
 
   ]).then(answers => {
     const newManager = new Manager(answers.name, answers.id, answers.email, answers.office);
-    Team.push(newManager);
+    teamArr.push(newManager);
     newTeam();
   }
   )};
@@ -101,7 +101,7 @@ function addEngineer() {
 
   ]).then(answers => {
     const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-    Team.push(newEngineer);
+    teamArr.push(newEngineer);
     newTeam();
   }
 
@@ -135,7 +135,7 @@ function addIntern() {
 
   ]).then(answers => {
     const newIntern = new Intern(answers.name, answers.id, answers.email, answers.school);
-    Team.push(newIntern);
+    teamArr.push(newIntern);
     newTeam();
   }
 
@@ -163,7 +163,7 @@ function addEmployee() {
   
     ]).then(answers => {
       const newEmployee = new Employee (answers.name, answers.id, answers.email);
-      Team.push(newEmployee);
+      teamArr.push(newEmployee);
       newTeam();
     }
   
@@ -174,7 +174,7 @@ const buildTeam = () => {
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR)
 }
-fs.writeFileSync(outputPath, generateSite(Team), "utf-8");
+fs.writeFileSync(outputPath, generateSite(teamArr), "utf-8");
 }
 
 newTeam();
