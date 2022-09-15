@@ -8,10 +8,213 @@ const generateHTML = require("./src/template");
 const util = require("util");
 const fs = require("fs");
 const teamArr = [];
-//const createFileSync = util.promisify(fs.appendFile);
-//const appendFileSync = util.promisify(fs.createFile);
+//const distPath = path.join(dist_dir, 'index.html')
 
-function newTeam() {
+// follow readme instructions on order of prompts, starting with Manager
+const promptManager = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'managerName',
+      message: 'Enter the team managers name',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'managerId',
+      message: 'Enter the team managers employee ID',
+      validate: idInput => {
+        if (idInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'managerEmail',
+      message: 'Enter the team managers email address',
+      validate: emailInput => {
+        if (emailInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'managerOfficeNumber',
+      message: 'Enter the team managers office number',
+      validate: officeNumberInput => {
+        if (officeNumberInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+  ]).then(answers => {
+    const manager = new Manager(answers.nameInput, answers.idInput, answers.emailInput, answers.officeNumberInput);
+    teamArr.push(manager);
+    addToTeam();
+  })
+};
+
+// prompt next quesiton from readme criteria 
+
+const addToTeam = () => {
+  return inquirer.prompt([
+    {
+      type: 'list',
+      name: 'menu',
+      message: 'Please select from the option to add an engineer or an intern or to finish building your team',
+      choices: ['add an engineer', 'add an intern', 'finish building my team']
+    }])
+    .then(userChoice => {
+      switch (userChoice.menu) {
+        case "add an engineer":
+          promptEngineer();
+          break;
+        case "add an intern":
+          promptIntern();
+          break;
+        default:
+          buildTeam();
+      }
+    });
+};
+
+const promptEngineer = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Enter the team engineers name',
+      validate: name => {
+        if (name) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'engineerId',
+      message: 'Enter the engineers ID',
+      validate: idInput => {
+        if (idInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'engineerEmail',
+      message: 'Enter the engineers email',
+      validate: email => {
+        if (email) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'githubUsername',
+      message: 'Enter the engineers github username',
+      validate: githubUsername => {
+        if (githubUsername) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  ]).then(answers => {
+    const engineer = new Engineer(answers.name, answers.idInput, answers.email, answers.githubUsername);
+    teamArr.push(engineer);
+    addToTeam();
+  })
+};
+
+const promptIntern = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Enter the interns name',
+      validate: name => {
+        if (name) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'employeeId',
+      message: 'Enter the interns employee ID',
+      validate: idInput => {
+        if (idInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Enter the interns email',
+      validate: email => {
+        if (email) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'school',
+      message: 'Enter the interns school',
+      validate: schoolInput => {
+        if (schoolInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  ]).then(answers => {
+    console.log(answers);
+    const intern = new Intern(answers.name, answers.idInput, answers.email, answers.schoolInput);
+    teamArr.push(intern);
+    addToTeam();
+  })
+};
+
+function buildTeam() {
+  fs.writeFileSync(distPath, generateSite(teamArr), 'utf-8')
+}
+
+promptManager();
+
+// Old code that didn't ask in correct order 
+/*function newTeam() {
   inquirer.prompt([ {
       type: 'list',
       name: 'choice',
@@ -169,12 +372,11 @@ function addEmployee() {
   
     )};
 
+    newTeam();
 
-const buildTeam = () => {
-if (!fs.existsSync(OUTPUT_DIR)) {
-  fs.mkdirSync(OUTPUT_DIR)
-}
-fs.writeFileSync(outputPath, generateSite(teamArr), "utf-8");
+function buildTeam() {
+  fs.writeFileSync(distPath, generateSite(teamArr), 'utf-8')
 }
 
 newTeam();
+*/
