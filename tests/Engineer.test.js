@@ -5,16 +5,18 @@ const Engineer = require('../lib/Engineer');
 
 // Test each parameter
 test('constructor values for engineer', () => {
+  var testValue = 'githubUsername'
   const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'githubUsername');
   expect(engineer.github).toBe('githubUsername');
 });
 
 test('returnRole method works?', () => {
     const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'githubUsername');
-    expect(engineer.returnRole()).toBe('Engineer');
+    expect(engineer.getRole()).toBe('Engineer');
 });
 
 test('returnGithub method works?', () => {
+  var testValue = 'githubUsername'
   const engineer = new Engineer('Sam', '2', 'samtheman@gmail.com', 'githubUsername');
-  expect(engineer.returnGithub()).toBe('githubUsername');
+  expect(engineer.getGithub()).toBe(testValue);
 });

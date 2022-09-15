@@ -11,11 +11,11 @@ test('constructor values for intern', () => {
 
 test('returnRole method works?', () => {
     const intern = new Intern('Zach', '3', 'zachattack@gmail.com', 'UC Berkeley');
-    expect(intern.returnRole()).toBe('Intern');
+    expect(intern.getRole()).toBe('Intern');
 });
 
 test('returnSchool method works?', () => {
   var testValue = 'UC Berkeley'
   const intern = new Intern('Zach', '3', 'zachattack@gmail.com', 'UC Berkeley');
-  expect(intern.returnSchool()).toBe(testValue);
+  expect(intern.getSchool()).toBe(testValue);
 });

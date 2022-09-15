@@ -13,20 +13,20 @@ test('constructor values for Employee', () => {
 
 test('returnName method works?', () => {
     const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com');
-    expect(employee.returnName()).toBe('Hanna');
+    expect(employee.getName()).toBe('Hanna');
 });
 
 test('returnID method works?', () => {
     const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com');
-    expect(employee.returnId()).toBe('1');
+    expect(employee.getId()).toBe('1');
 });
 
 test('returnEmail method works?', () => {
     const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com');
-    expect(employee.returnEmail()).toBe('hannamarcus1@gmail.com');
+    expect(employee.getEmail()).toBe('hannamarcus1@gmail.com');
 });
 
 test('returnRole method works?', () => {
     const employee = new Employee('Hanna', '1', 'hannamarcus1@gmail.com');
-    expect(employee.returnRole()).toBe('Employee');
+    expect(employee.getRole()).toBe('Employee');
 });

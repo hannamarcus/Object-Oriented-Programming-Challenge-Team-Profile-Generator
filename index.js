@@ -8,9 +8,8 @@ const generateHTML = require("./src/template");
 const util = require("util");
 const fs = require("fs");
 const teamArr = [];
-//const distPath = path.join(dist_dir, 'index.html')
+//const outputPath = path.join(OUTPUT_DIR, "index.html");
 
-// follow readme instructions on order of prompts, starting with Manager
 const promptManager = () => {
   return inquirer.prompt([
     {
@@ -68,8 +67,6 @@ const promptManager = () => {
   })
 };
 
-// prompt next quesiton from readme criteria 
-
 const addToTeam = () => {
   return inquirer.prompt([
     {
@@ -87,7 +84,7 @@ const addToTeam = () => {
           promptIntern();
           break;
         default:
-          buildTeam();
+          buildHTML();
       }
     });
 };
@@ -207,13 +204,13 @@ const promptIntern = () => {
   })
 };
 
-function buildTeam() {
-  fs.writeFileSync(distPath, generateSite(teamArr), 'utf-8')
+function buildHTML() {
+  fs.writeFileSync(outputPath, generateSite(teamArr), 'utf-8');
 }
 
 promptManager();
 
-// Old code that didn't ask in correct order 
+// Old code that didn't ask in correct order of readme request (work with tutor to correct)
 /*function newTeam() {
   inquirer.prompt([ {
       type: 'list',
