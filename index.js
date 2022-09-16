@@ -4,11 +4,16 @@ const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const generateHTML = require("./src/template");
+const teamHTML = require("./src/template");
 const util = require("util");
 const fs = require("fs");
+const path = require('path');
+const generateTeam = require("./src/template");
+const dist_dir = path.resolve(__dirname, 'dist');
+const distPath = path.join(dist_dir, 'template.html')
+//const outputPath = path.join(OUTPUT_DIR, "template.html");
+
 const teamArr = [];
-//const outputPath = path.join(OUTPUT_DIR, "index.html");
 
 const promptManager = () => {
   return inquirer.prompt([
@@ -84,7 +89,7 @@ const addToTeam = () => {
           promptIntern();
           break;
         default:
-          buildHTML();
+          pushHTML();
       }
     });
 };
@@ -204,8 +209,8 @@ const promptIntern = () => {
   })
 };
 
-function buildHTML() {
-  fs.writeFileSync(outputPath, generateSite(teamArr), 'utf-8');
+function pushHTML() {
+  fs.writeFileSync(distPath, generateTeam(teamArr), 'utf-8');
 }
 
 promptManager();

@@ -1,5 +1,4 @@
-const generateTeam = (team) => {
-  console.log(team);
+const generateTeam = (teamArr) => {
   const html = [];
 
 //Employee Box
@@ -69,7 +68,7 @@ const managerBox = (manager) => {`
   html.push(managerHtml);
 }
 
-// Loop for all employees
+/* Loop for all employees
 for (let i = 0; i < team.length; i++) {
   if (employee[i].getRole() === "Employee") {
     employeeBox(team[i]);
@@ -84,14 +83,15 @@ for (let i = 0; i < team.length; i++) {
       internBox(team[i]);
   }
 }
+*/
 
-   // Join the HTML blocks
-   return html.join('');
+
+const buildHTML =(teamArr)=> {
+  const teamBoxes = teamArr.map(member => generateTeam(member)).join('');
+      return
   }
   // Export function to generate HTML page
-
-  module.exports = team => {
-    return `
+`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -109,7 +109,7 @@ for (let i = 0; i < team.length; i++) {
     </div>     
     
     <div class="card-group"> 
-    ${generateTeam(team)}    
+    ${buildHTML(teamArr)}    
    
     </div>
     
@@ -119,3 +119,5 @@ for (let i = 0; i < team.length; i++) {
     </html>
     `;
 };
+
+module.exports = generateTeam; 
