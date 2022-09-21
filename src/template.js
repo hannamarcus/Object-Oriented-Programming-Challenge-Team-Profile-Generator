@@ -1,25 +1,26 @@
-const generateTeam = (teamArr) => {
-  const html = [];
+const generateTeam = (team) => {
 
-//Employee Box
-const employeeBox = (employee) => {`
-<div class="card" style="width: 18rem; margin: 15px;">
-    <div class="card-body bg-primary">
-      <h5 class="card-title text-center"> ${employee.getName()} </h5>
-      <h6 class="card-subtitle mb-2 text-white text-center"> ${employee.getRole()} </h6>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID #:${employee.getId()}</li>
-        <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}"> ${employee.getEmail()} </a></li>
-      </ul>
-    </div>
-  </div>
-  `
-  html.push(employeeHtml);
-};
 
-//Engineer Box
-const engineerBox = (engineer) => { `
-    <div class="card" style="width: 18rem; margin: 15px;">
+  //Employee Box
+  //   const employeeBox = (employee) => {
+  //     `
+  // <div class="card" style="width: 18rem; margin: 15px;">
+  //     <div class="card-body bg-primary">
+  //       <h5 class="card-title text-center"> ${employee.getName()} </h5>
+  //       <h6 class="card-subtitle mb-2 text-white text-center"> ${employee.getRole()} </h6>
+  //       <ul class="list-group list-group-flush">
+  //         <li class="list-group-item">ID #:${employee.getId()}</li>
+  //         <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}"> ${employee.getEmail()} </a></li>
+  //       </ul>
+  //     </div>
+  //   </div>
+  //   `
+  //     html.push(employeeHtml);
+  //   };
+
+  //Engineer Box
+  const engineerBox = (engineer) => {
+    return `<div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-white text-center"> ${engineer.getName()} </h5>
       <h6 class="card-subtitle mb-2 text-white text-center"> ${engineer.getRole()} </h6>
@@ -31,12 +32,11 @@ const engineerBox = (engineer) => { `
     </div>
   </div>
   `
-  html.push(engineerHtml);
-}
+  }
 
-//Intern Box
-const internBox = (intern) => {`
-    <div class="card" style="width: 18rem; margin: 15px;">
+  //Intern Box
+  const internBox = (intern) => {
+    return `<div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-white text-center">${intern.getName()} </h5>
       <h6 class="card-subtitle mb-2 text-white text-center">${intern.getRole()} </h6>
@@ -48,50 +48,38 @@ const internBox = (intern) => {`
     </div>
   </div>
   `
-  html.push(internHtml);
-}
+  }
 
-//Manager Box
-const managerBox = (manager) => {`
-<div class="card" style="width: 18rem; margin: 15px;">
+  //Manager Box
+  const managerBox = (manager) => {
+    return `<div class="card" style="width: 18rem; margin: 15px;">
     <div class="card-body bg-primary">
       <h5 class="card-title text-center"> ${manager.getName()} </h5>
       <h6 class="card-subtitle mb-2 text-white text-center"> ${manager.getRole()} </h6>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID #:${manager.returnId()}</li>
+        <li class="list-group-item">ID #:${manager.getId()}</li>
         <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}"> ${manager.getEmail()} </a></li>
         <li class="list-group-item">Office Location: ${manager.getOffice()} </li>
       </ul>
     </div>
   </div>
   `
-  html.push(managerHtml);
-}
+  }
 
-/* Loop for all employees
-for (let i = 0; i < team.length; i++) {
-  if (employee[i].getRole() === "Employee") {
-    employeeBox(team[i]);
-}
-  if (manager[i].getRole() === "Manager") {
-      managerBox(team[i]);
-  }
-  if (engineer[i].getRole() === "Engineer") {
-      engineerBox(team[i]);
-  }
-  if (intern[i].getRole() === "Intern") {
-      internBox(team[i]);
-  }
-}
-*/
-
-
-const buildHTML =(teamArr)=> {
-  const teamBoxes = teamArr.map(member => generateTeam(member)).join('');
-      return
-  }
   // Export function to generate HTML page
-`
+  const html = [];
+
+  html.push(team.filter(emp => emp.getRole() === 'Manager').map(manager => managerBox(manager)));
+
+  html.push(team.filter(emp => emp.getRole() === 'Intern').map(intern => internBox(intern)));
+
+  html.push(team.filter(emp => emp.getRole() === 'Engineer').map(engineer => engineerBox(engineer)));
+
+  return html.join('');
+}
+module.exports = team => {
+  // Export function to generate HTML page
+  return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -109,7 +97,7 @@ const buildHTML =(teamArr)=> {
     </div>     
     
     <div class="card-group"> 
-    ${buildHTML(teamArr)}    
+  ${generateTeam(team)}    
    
     </div>
     
@@ -119,5 +107,3 @@ const buildHTML =(teamArr)=> {
     </html>
     `;
 };
-
-module.exports = generateTeam; 

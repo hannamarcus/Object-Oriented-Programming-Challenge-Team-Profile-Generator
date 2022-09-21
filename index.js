@@ -9,9 +9,9 @@ const util = require("util");
 const fs = require("fs");
 const path = require('path');
 const generateTeam = require("./src/template");
-const dist_dir = path.resolve(__dirname, 'dist');
-const distPath = path.join(dist_dir, 'template.html')
-//const outputPath = path.join(OUTPUT_DIR, "template.html");
+
+const OUTPUT = path.resolve(__dirname, 'dist')
+const outputPath = path.join(OUTPUT, 'index.html')
 
 const teamArr = [];
 
@@ -66,7 +66,7 @@ const promptManager = () => {
       }
     },
   ]).then(answers => {
-    const manager = new Manager(answers.nameInput, answers.idInput, answers.emailInput, answers.officeNumberInput);
+    const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
     teamArr.push(manager);
     addToTeam();
   })
@@ -210,175 +210,19 @@ const promptIntern = () => {
 };
 
 function pushHTML() {
-  fs.writeFileSync(distPath, generateTeam(teamArr), 'utf-8');
+
+  if (!fs.existsSync(OUTPUT)) {
+      fs.mkdirSync(OUTPUT);
+  }
+
+  fs.writeFile(outputPath, generateTeam(teamArr), (error) => {
+    if (error) {
+        console.log('There was an error: ', error);
+    } else {
+        console.log('HTML team file created');
+    }
+});
 }
+
 
 promptManager();
-
-// Old code that didn't ask in correct order of readme request (work with tutor to correct)
-/*function newTeam() {
-  inquirer.prompt([ {
-      type: 'list',
-      name: 'choice',
-      message: 'Please select the correct title.',
-      choices: ['Employee', 'Engineer', 'Intern', 'Manager'],
-    },
-
-  ]).then(function (response) {
-    switch (response.choice) {
-      case "Employee":
-        addEmployee();
-        break;
-
-      case "Engineer":
-          addEngineer();
-          break;
-
-      case "Intern":
-            addIntern();
-            break;
-    
-      case "Manager":
-        addManager();
-        break;
-
-    }}
-  )}
-
-function addManager() {
-  inquirer.prompt([
-    {
-      type: "input",
-      name: "name",
-      message: "Please input manager's name.:"
-    },
-
-    {
-      type: "input",
-      name: "id",
-      message: "Please input manager's ID number:"
-    },
-
-    {
-      type: "input",
-      name: "email",
-      message: "Please input manager's email address:"
-    },
-
-    {
-      type: "input",
-      name: "office",
-      message: "Please input manager's office location:"
-    }
-
-  ]).then(answers => {
-    const newManager = new Manager(answers.name, answers.id, answers.email, answers.office);
-    teamArr.push(newManager);
-    newTeam();
-  }
-  )};
-
-function addEngineer() {
-  inquirer.prompt([
-    {
-      type: "input",
-      name: "name",
-      message: "Please input engineer's name:"
-    },
-
-    {
-      type: "input",
-      name: "id",
-      message: "Please input engineer's ID number:"
-    },
-
-    {
-      type: "input",
-      name: "email",
-      message: "Please input engineer's email address:"
-    },
-
-    {
-      type: "input",
-      name: "github",
-      message: "Enter Engineer's Github username:"
-    }
-
-  ]).then(answers => {
-    const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-    teamArr.push(newEngineer);
-    newTeam();
-  }
-
-  )};
-
-function addIntern() {
-  inquirer.prompt([
-    {
-      type: "input",
-      name: "name",
-      message: "Please input intern's name:"
-    },
-
-    {
-      type: "input",
-      name: "id",
-      message: "Please input intern's ID number:"
-    },
-
-    {
-      type: "input",
-      name: "email",
-      message: "Please input intern's email address:"
-    },
-
-    {
-      type: "input",
-      name: "school",
-      message: "Please input intern's school name:"
-    }
-
-  ]).then(answers => {
-    const newIntern = new Intern(answers.name, answers.id, answers.email, answers.school);
-    teamArr.push(newIntern);
-    newTeam();
-  }
-
-  )};
-
-function addEmployee() {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "Please input employee's name:"
-      },
-  
-      {
-        type: "input",
-        name: "id",
-        message: "Please input employee's ID number:"
-      },
-  
-      {
-        type: "input",
-        name: "email",
-        message: "Please input employee's email address:"
-      }
-  
-    ]).then(answers => {
-      const newEmployee = new Employee (answers.name, answers.id, answers.email);
-      teamArr.push(newEmployee);
-      newTeam();
-    }
-  
-    )};
-
-    newTeam();
-
-function buildTeam() {
-  fs.writeFileSync(distPath, generateSite(teamArr), 'utf-8')
-}
-
-newTeam();
-*/
