@@ -131,7 +131,7 @@ const promptEngineer = () => {
           return false;
         }
       }
-    },
+    }, 
     {
       type: 'input',
       name: 'githubUsername',
@@ -145,7 +145,7 @@ const promptEngineer = () => {
       }
     }
   ]).then(answers => {
-    const engineer = new Engineer(answers.name, answers.idInput, answers.email, answers.githubUsername);
+    const engineer = new Engineer(answers.name, answers.engineerId, answers.engineerEmail, answers.githubUsername);
     teamArr.push(engineer);
     addToTeam();
   })
@@ -203,7 +203,7 @@ const promptIntern = () => {
     }
   ]).then(answers => {
     console.log(answers);
-    const intern = new Intern(answers.name, answers.idInput, answers.email, answers.schoolInput);
+    const intern = new Intern(answers.name, answers.employeeId, answers.email, answers.school);
     teamArr.push(intern);
     addToTeam();
   })
