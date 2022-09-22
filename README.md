@@ -17,7 +17,7 @@
   MIT
 
   ## Testing:
-  In order to test run All test files in test folder in the GitBash terminal
+  In order to test run all test files in test folder in the GitBash terminal
 
   ## Questions:
   Any questions? Contact me on [Github](https://github.com/hannamarcus)
